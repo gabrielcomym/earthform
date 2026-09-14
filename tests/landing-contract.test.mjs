@@ -88,6 +88,16 @@ test('navigation targets existing semantic sections', async () => {
   }
 })
 
+test('thesis copy renders as one continuous paragraph in both languages', async () => {
+  const page = await source('app/page.tsx')
+  const content = await source('app/content.ts')
+
+  assert.match(page, /<strong>\{content\.teseBody\[0\]\}<\/strong>\{\' \'\}/)
+  assert.match(page, /\{content\.teseBody\[1\]\}/)
+  assert.match(content, /teseBody: \['Dados territoriais só importam quando ajudam a decidir\.', 'Imagens de satélite/)
+  assert.match(content, /teseBody: \['Territorial data only matters when it helps people decide\.', 'Satellite imagery/)
+})
+
 test('browser metadata points to the approved local Earthform favicon assets', async () => {
   const layout = await source('app/layout.tsx')
 
@@ -104,12 +114,21 @@ test('GitHub Pages release is configured as a static Next.js export', async () =
   ])
 
   assert.match(config, /output: 'export'/)
+  assert.match(config, /devIndicators: false/)
   assert.match(config, /trailingSlash: true/)
   assert.match(config, /unoptimized: true/)
   assert.match(config, /basePath/)
   assert.match(workflow, /branches: \[main\]/)
   assert.match(workflow, /path: \.\/out/)
   assert.match(workflow, /actions\/deploy-pages@v4/)
+})
+
+test('mobile method cards stay aligned to the section grid with compact rhythm', async () => {
+  const styles = await source('design-system/styles.module.css')
+
+  assert.match(styles, /@media \(max-width: 767px\)[\s\S]*?\.servicesSection\s*\{[\s\S]*?gap: var\(--spacing-32\);/)
+  assert.match(styles, /@media \(max-width: 767px\)[\s\S]*?\.servicesGrid\s*\{[\s\S]*?row-gap: 0;/)
+  assert.match(styles, /@media \(max-width: 767px\)[\s\S]*?\.serviceCard\s*\{[\s\S]*?min-height: 0;[\s\S]*?padding: var\(--spacing-24\) 0;/)
 })
 
 test('navigation links use eased same-page anchor scrolling with accessible fallbacks', async () => {
@@ -380,11 +399,20 @@ test('canonical contracts protect resolved high-risk design-system values', asyn
   assert.doesNotMatch(serviceCardBlock, /background:/)
   assert.match(styles, /\.serviceCardDivider\s*\{[\s\S]*?height: 1px;[\s\S]*?background: var\(--color-border-card\);/)
   assert.match(styles, /\.serviceCardCopy\s*\{[\s\S]*?gap: var\(--spacing-10\);/)
-  assert.match(styles, /@media \(max-width: 767px\)[\s\S]*?\.serviceCard\s*\{[\s\S]*?min-height: 172px;[\s\S]*?padding: var\(--spacing-24\);/)
+  assert.match(styles, /@media \(max-width: 767px\)[\s\S]*?\.serviceCard\s*\{[\s\S]*?min-height: 0;[\s\S]*?padding: var\(--spacing-24\) 0;/)
   assert.match(styles, /\.ctaContent\s*\{[\s\S]*?gap: var\(--spacing-80\);[\s\S]*?padding-bottom: var\(--spacing-120\);/)
   assert.match(styles, /\.ctaTextGroup\s*\{[\s\S]*?gap: var\(--spacing-32\);/)
   assert.match(styles, /@media \(max-width: 767px\)[\s\S]*?\.ctaContent\s*\{[\s\S]*?padding-bottom: var\(--spacing-80\);/)
-  assert.match(styles, /\.mobileNavPanel\s*\{[\s\S]*?background: var\(--color-bg-primary\);/)
+  assert.match(styles, /\.mobileNavPanel\s*\{[\s\S]*?position: fixed;[\s\S]*?background: #212121;/)
+  assert.match(navbar, /li_menu\.svg/)
+  assert.match(navbar, /li_x\.svg/)
+  assert.match(navbar, /aria-modal="true"/)
+  assert.match(navbar, /event\.key === 'Escape'/)
+  assert.match(styles, /\.navbarOpen\s*\{[\s\S]*?mask-image: none;/)
+  assert.match(styles, /\.navbarControls\s*\{[\s\S]*?grid-column: 3;[\s\S]*?justify-self: end;/)
+  assert.match(styles, /\.mobileMenuNav\s*\{[\s\S]*?gap: var\(--spacing-16\);/)
+  assert.match(styles, /\.mobileNavPanelHeader\s*\{[\s\S]*?height: 72px;[\s\S]*?padding: 0 var\(--spacing-16\);/)
+  assert.match(styles, /\.mobileMenuNav\s*\{[\s\S]*?margin-top: 64px;/)
   assert.match(styles, /\.leadershipPanel\s*\{[\s\S]*?background: var\(--color-bg-primary\);/)
   assert.match(styles, /\.footer\s*\{[\s\S]*?background: var\(--color-bg-primary\);/)
   assert.match(styles, /\.navLink:hover/)
@@ -393,8 +421,9 @@ test('canonical contracts protect resolved high-risk design-system values', asyn
   assert.match(styles, /@media \(max-width: 1023px\)/)
   assert.match(styles, /@media \(max-width: 767px\)/)
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)/)
-  assert.match(pageStyles, /@media \(max-width: 1023px\)[\s\S]*?gap: 112px;/)
-  assert.match(pageStyles, /@media \(max-width: 767px\)[\s\S]*?gap: 88px;/)
+  assert.match(pageStyles, /\.main\s*\{[\s\S]*?gap: calc\(var\(--section-rhythm\) \+ var\(--spacing-16\)\);/)
+  assert.match(pageStyles, /@media \(max-width: 1023px\)[\s\S]*?gap: 128px;/)
+  assert.match(pageStyles, /@media \(max-width: 767px\)[\s\S]*?gap: 104px;/)
   assert.match(navbar, /aria-controls="mobile-navigation"/)
   assert.match(navbar, /aria-expanded=\{isOpen\}/)
   assert.match(navbar, /isOpen \? closeMenuLabel : menuLabel/)
@@ -411,7 +440,7 @@ test('canonical contracts protect resolved high-risk design-system values', asyn
     '120px desktop bottom padding',
     'Tablet: 768px to 1023px',
     'Mobile: 320px to 767px',
-    '112/88px responsive rhythms',
+    '128/104px responsive rhythms',
     'Interaction-state matrix',
   ]) {
     assert.ok(design.includes(resolvedContract), `${resolvedContract} must remain documented`)
@@ -474,7 +503,7 @@ test('canonical documentation does not promote stale reference values to global 
 
   assert.match(design, /Navigation feedback is required/)
   assert.match(design, /The page is fluid up to `--container-page`/)
-  assert.match(design, /The 160px rhythm is a desktop signature, not a mobile requirement/)
+  assert.match(design, /The desktop rhythm adds a measured 16px breathing increment to the 160px baseline/)
 })
 
 test('motion language provides subtle one-time element choreography and accessible fallbacks', async () => {
