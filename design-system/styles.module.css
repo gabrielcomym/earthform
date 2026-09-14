@@ -444,7 +444,7 @@
   aspect-ratio: 1400 / 733;
   margin-left: calc(50% - 50vw);
   border-radius: var(--radius-none);
-  animation: enter-up var(--motion-duration-reveal) var(--motion-easing-enter) calc(var(--motion-delay-content) * 2) both;
+  animation: hero-media-enter var(--motion-duration-reveal) var(--motion-easing-standard) calc(var(--motion-delay-content) * 2) both;
 }
 
 .imageBanner-grid {
@@ -559,6 +559,18 @@
     mask-position: 100% 0;
     -webkit-mask-image: none;
     mask-image: none;
+  }
+}
+
+@keyframes hero-media-enter {
+  from {
+    opacity: 0.01;
+    transform: scale(1.015);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
