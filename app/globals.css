@@ -1,0 +1,48 @@
+@import '../design-system/tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-bg-surface);
+  color-scheme: dark;
+  scroll-padding-top: var(--spacing-48);
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--type-body-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--type-body-leading);
+  letter-spacing: 0;
+  font-optical-sizing: none;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--color-accent-primary);
+  color: var(--color-text-on-accent);
+}

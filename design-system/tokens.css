@@ -1,0 +1,64 @@
+:root {
+  --color-bg-primary: #000000;
+  --color-bg-surface: #131313;
+  --color-bg-placeholder: #868686;
+  --color-text-primary: #e8e8e8;
+  --color-text-secondary: #b2b2b2;
+  --color-text-inverse: #ffffff;
+  --color-text-on-accent: #000000;
+  --color-accent-primary: #ff9000;
+  --color-border-default: #e8e8e8;
+  --color-border-subtle: #282828;
+  --color-border-card: #4c4c4c;
+
+  --font-sans: var(--font-inter), Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --type-display-size: 80px;
+  --type-display-leading: 1;
+  --type-heading-size: 28px;
+  --type-heading-leading: 1;
+  --type-editorial-size: 28px;
+  --type-editorial-leading: 1.36;
+  --type-text-section-size: 40px;
+  --type-text-section-leading: 1;
+  --type-card-size: 24px;
+  --type-card-leading: 1.33;
+  --type-name-size: 20px;
+  --type-body-size: 16px;
+  --type-body-leading: 1.5;
+
+  --radius-none: 0;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+  --spacing-160: 160px;
+
+  --container-page: 1400px;
+  --container-grid: 1304px;
+  --container-text: 972px;
+  --container-cta: 986px;
+  --gutter-page: 48px;
+  --section-rhythm: 160px;
+  --control-height: 48px;
+
+  --motion-duration-fast: 180ms;
+  --motion-duration-reveal: 600ms;
+  --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-easing-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-delay-content: 96ms;
+  --motion-delay-stagger: 120ms;
+  --motion-reveal-mask-size: 160%;
+}
