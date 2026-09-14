@@ -150,7 +150,7 @@ test('navigation links use eased same-page anchor scrolling with accessible fall
   assert.ok(design.includes('reduced-motion users receive instant movement'))
 })
 
-test('language selector defaults to Portuguese and synchronizes the landing copy', async () => {
+test('language selector defaults to English and synchronizes the landing copy', async () => {
   const [page, content, switcher, styles] = await Promise.all([
     source('app/page.tsx'),
     source('app/content.ts'),
@@ -158,7 +158,7 @@ test('language selector defaults to Portuguese and synchronizes the landing copy
     source('design-system/styles.module.css'),
   ])
 
-  assert.match(page, /useState<Language>\('pt'\)/)
+  assert.match(page, /useState<Language>\('en'\)/)
   assert.match(page, /landingContent\[language\]/)
   assert.match(content, /Territorial intelligence for decisions that move capital and impact\./)
   assert.match(content, /navigationItems: englishNavigation/)
@@ -274,7 +274,8 @@ test('opening satellite media is full bleed, critical, and not scroll-reveal gat
   assert.match(imageBanner, /preload=\{priority\}/)
   assert.match(imageBanner, /fetchPriority=\{priority \? 'high' : undefined\}/)
   assert.match(imageBanner, /sizes=\{isHero \|\| variant === 'full' \? '100vw'/)
-  assert.match(styles, /\.imageBanner-hero\s*\{[\s\S]*?width: 100vw;[\s\S]*?aspect-ratio: 1400 \/ 733;[\s\S]*?margin-left: calc\(50% - 50vw\);[\s\S]*?animation: enter-up var\(--motion-duration-reveal\)/)
+  assert.match(styles, /\.imageBanner-hero\s*\{[\s\S]*?width: 100vw;[\s\S]*?aspect-ratio: 1400 \/ 733;[\s\S]*?margin-left: calc\(50% - 50vw\);[\s\S]*?animation: hero-media-enter var\(--motion-duration-reveal\)/)
+  assert.match(styles, /@keyframes hero-media-enter[\s\S]*?opacity: 0\.01;[\s\S]*?transform: scale\(1\.015\);[\s\S]*?opacity: 1;[\s\S]*?transform: scale\(1\);/)
   assert.match(styles, /\.imageBanner\s*\{[\s\S]*?border: 0;[\s\S]*?outline: 0;[\s\S]*?background: var\(--color-bg-surface\);/)
   assert.match(styles, /\.imageBanner img\s*\{[\s\S]*?display: block;[\s\S]*?border: 0;[\s\S]*?outline: 0;/)
   assert.match(styles, /\.teamPhoto\s*\{[\s\S]*?border-radius: var\(--radius-sm\);[\s\S]*?background: var\(--color-bg-primary\);/)
@@ -324,7 +325,7 @@ test('canonical design documentation mirrors every implemented token and public 
   const declarations = tokenDeclarations(tokens)
   const symbols = barrelSymbols(barrel)
 
-  assert.equal(declarations.length, 57)
+  assert.equal(declarations.length, 59)
   assert.equal(symbols.length, 35)
 
   for (const { name, value } of declarations) {
@@ -421,9 +422,9 @@ test('canonical contracts protect resolved high-risk design-system values', asyn
   assert.match(styles, /@media \(max-width: 1023px\)/)
   assert.match(styles, /@media \(max-width: 767px\)/)
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)/)
-  assert.match(pageStyles, /\.main\s*\{[\s\S]*?gap: calc\(var\(--section-rhythm\) \+ var\(--spacing-16\)\);/)
-  assert.match(pageStyles, /@media \(max-width: 1023px\)[\s\S]*?gap: 128px;/)
-  assert.match(pageStyles, /@media \(max-width: 767px\)[\s\S]*?gap: 104px;/)
+  assert.match(pageStyles, /\.main\s*\{[\s\S]*?gap: var\(--spacing-240\);/)
+  assert.match(pageStyles, /@media \(max-width: 1023px\)[\s\S]*?gap: var\(--spacing-160\);/)
+  assert.match(pageStyles, /@media \(max-width: 767px\)[\s\S]*?gap: var\(--spacing-128\);/)
   assert.match(navbar, /aria-controls="mobile-navigation"/)
   assert.match(navbar, /aria-expanded=\{isOpen\}/)
   assert.match(navbar, /isOpen \? closeMenuLabel : menuLabel/)
@@ -440,7 +441,7 @@ test('canonical contracts protect resolved high-risk design-system values', asyn
     '120px desktop bottom padding',
     'Tablet: 768px to 1023px',
     'Mobile: 320px to 767px',
-    '128/104px responsive rhythms',
+    '240/160/128px rhythms',
     'Interaction-state matrix',
   ]) {
     assert.ok(design.includes(resolvedContract), `${resolvedContract} must remain documented`)
@@ -503,7 +504,7 @@ test('canonical documentation does not promote stale reference values to global 
 
   assert.match(design, /Navigation feedback is required/)
   assert.match(design, /The page is fluid up to `--container-page`/)
-  assert.match(design, /The desktop rhythm adds a measured 16px breathing increment to the 160px baseline/)
+  assert.match(design, /The 240\/160\/128px rhythms create visible separation between horizontal modules/)
 })
 
 test('motion language provides subtle one-time element choreography and accessible fallbacks', async () => {
