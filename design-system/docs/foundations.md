@@ -73,7 +73,7 @@ Use only Regular and Medium. Letter spacing is `0`; optical sizing and synthesis
 | `--spacing-120` | `120px` | Desktop Leadership panel and CTA bottom padding |
 | `--spacing-160` | `160px` | Desktop section rhythm |
 
-Local values not promoted to tokens: Button padding `14px 28px`, desktop top offset `40px`, mobile rhythm `88px`, and tablet rhythm `112px`.
+Local values not promoted to tokens: Button padding `14px 28px`, desktop top offset `40px`, mobile rhythm `104px`, and tablet rhythm `128px`.
 
 ## Radii
 
@@ -133,10 +133,10 @@ Depth comes from `#131313` browser/page surface, `#000000` contained chapters, a
 
 ### Tablet: 768px to 1023px
 
-32px gutters/top offset, 112px rhythm, 56px display type, 250px Hero minimum, two-column Services and Team, 32px grid-media gutters, 720px CTA cap.
+32px gutters/top offset, 128px rhythm, 56px display type, 250px Hero minimum, two-column Services and Team, 32px grid-media gutters, 720px CTA cap.
 
 ### Mobile: 320px to 767px
 
-24px gutters/top offset, 88px rhythm, 44px display type, 220px Hero minimum, 21px editorial/card copy, 24px section titles, one-column Services/Team, Service Cards at 172px minimum with 24px padding, nested Leadership at `0 24px` outside and `32px 24px 80px` inside, 340px CTA minimum, full-bleed stacked Footer, mobile disclosure visible.
+24px gutters/top offset, 104px rhythm, 44px display type, 220px Hero minimum, 21px editorial/card copy, 24px section titles, one-column Services/Team, Service Cards at 172px minimum with 24px padding, nested Leadership at `0 24px` outside and `32px 24px 80px` inside, 340px CTA minimum, full-bleed stacked Footer, mobile disclosure visible.
 
-All widths preserve source order, stable media ratios, readable measures, and zero horizontal overflow. The 160px rhythm is a desktop signature, not a mobile requirement; the 112/88px responsive rhythms preserve proportional breathing room.
+All widths preserve source order, stable media ratios, readable measures, and zero horizontal overflow. The desktop rhythm adds a measured 16px breathing increment to the 160px baseline; the 128/104px responsive rhythms preserve proportional breathing room.

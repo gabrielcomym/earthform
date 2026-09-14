@@ -49,7 +49,10 @@ export default function EarthformLandingPage() {
         />
         <TextSection
           body={
-            <>{content.teseBody.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</>
+            <p>
+              <strong>{content.teseBody[0]}</strong>{' '}
+              {content.teseBody[1]}
+            </p>
           }
           id="tese"
           label={content.teseLabel}

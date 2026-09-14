@@ -9,8 +9,8 @@
 .main {
   display: flex;
   flex-direction: column;
-  gap: var(--section-rhythm);
-  margin-top: var(--section-rhythm);
+  gap: calc(var(--section-rhythm) + var(--spacing-16));
+  margin-top: calc(var(--section-rhythm) + var(--spacing-16));
 }
 
 .expertiseList {
@@ -31,8 +31,8 @@
   }
 
   .main {
-    gap: 112px;
-    margin-top: 112px;
+    gap: 128px;
+    margin-top: 128px;
   }
 }
 
@@ -42,7 +42,7 @@
   }
 
   .main {
-    gap: 88px;
-    margin-top: 88px;
+    gap: 104px;
+    margin-top: 104px;
   }
 }

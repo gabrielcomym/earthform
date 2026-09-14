@@ -20,9 +20,17 @@
   grid-column: 1;
 }
 
+.navbarOpen {
+  animation: none !important;
+  transform: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
 .navbarControls {
   display: flex;
   align-items: center;
+  grid-column: 3;
   justify-self: end;
   gap: var(--spacing-16);
 }
@@ -77,6 +85,10 @@
   gap: 20px;
 }
 
+.desktopLanguageSwitcher {
+  display: block;
+}
+
 .languageOption {
   display: inline-flex;
   min-height: 44px;
@@ -127,8 +139,11 @@
 }
 
 .menuButton {
-  min-width: 64px;
-  min-height: 44px;
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
   padding: 0;
   border: 0;
   background: transparent;
@@ -137,15 +152,48 @@
 }
 
 .mobileNavPanel {
-  position: absolute;
-  top: calc(100% + var(--spacing-16));
-  right: var(--gutter-page);
-  display: grid;
-  width: min(240px, calc(100vw - (2 * var(--gutter-page))));
-  padding: var(--spacing-16) var(--spacing-24);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
-  background: var(--color-bg-primary);
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+  align-items: center;
+  background: #212121;
+  animation: mobile-menu-enter var(--motion-duration-fast) var(--motion-easing-enter) both;
+}
+
+.mobileNavPanelHeader {
+  display: flex;
+  width: 100%;
+  height: 72px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-16);
+}
+
+.mobileMenuNav {
+  display: flex;
+  width: calc(100% - (2 * var(--spacing-16)));
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-16);
+  margin-top: 64px;
+}
+
+.mobileMenuNav .navLink {
+  min-height: 0;
+  justify-content: center;
+  font-size: 40px;
+  line-height: 1;
+  text-align: center;
+}
+
+.mobileMenuLanguages {
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
 }
 
 .hero {
@@ -208,6 +256,10 @@
   font-size: var(--type-text-section-size);
   font-weight: var(--font-weight-regular);
   line-height: var(--type-text-section-leading);
+}
+
+.editorialBody strong {
+  font-weight: var(--font-weight-medium);
 }
 
 .sectionHeader {
@@ -510,6 +562,18 @@
   }
 }
 
+@keyframes mobile-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .navbar,
 .hero,
 .imageBanner-hero,
@@ -678,14 +742,22 @@
     display: none;
   }
 
+  .desktopLanguageSwitcher {
+    display: none;
+  }
+
   .mobileNav {
-    display: flex;
+    display: block;
     align-items: center;
   }
 
-  .mobileNavPanel {
-    right: var(--spacing-24);
-    width: min(240px, calc(100vw - (2 * var(--spacing-24))));
+  .navbar {
+    height: 72px;
+    padding: 0 var(--spacing-16);
+  }
+
+  .navbarControls {
+    gap: 0;
   }
 
   .hero {
@@ -718,13 +790,19 @@
     font-size: 24px;
   }
 
+  .servicesSection {
+    gap: var(--spacing-32);
+  }
+
   .servicesGrid {
     grid-template-columns: minmax(0, 1fr);
+    row-gap: 0;
   }
 
   .serviceCard {
-    min-height: 172px;
-    padding: var(--spacing-24);
+    min-height: 0;
+    gap: var(--spacing-24);
+    padding: var(--spacing-24) 0;
   }
 
   .serviceDescription {
