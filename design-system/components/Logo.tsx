@@ -8,13 +8,15 @@ export type LogoProps = {
 
 export function Logo({ className = '' }: LogoProps) {
   return (
-    <Image
-      alt="Earthform"
-      className={`${styles.logo} ${className}`.trim()}
-      height={13}
-      priority
-      src="/assets/earthform-logo.svg"
-      width={128}
-    />
+    <a aria-label="Earthform" className={styles.logoLink} href="https://earthform.io/">
+      <Image
+        alt="Earthform"
+        className={`${styles.logo} ${className}`.trim()}
+        height={13}
+        priority
+        src="/assets/earthform-logo.svg"
+        width={128}
+      />
+    </a>
   )
 }

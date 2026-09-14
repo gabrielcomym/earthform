@@ -107,6 +107,18 @@ test('browser metadata points to the approved local Earthform favicon assets', a
   assert.match(layout, /type: 'image\/png'/)
 })
 
+test('header and footer logos link to the canonical Earthform domain', async () => {
+  const [logo, page] = await Promise.all([
+    source('design-system/components/Logo.tsx'),
+    source('app/page.tsx'),
+  ])
+
+  assert.match(logo, /href="https:\/\/earthform\.io\/"/)
+  assert.match(logo, /aria-label="Earthform"/)
+  assert.match(page, /<Navbar/)
+  assert.match(page, /<Footer/)
+})
+
 test('GitHub Pages release is configured as a static Next.js export', async () => {
   const [config, workflow] = await Promise.all([
     source('next.config.mjs'),
