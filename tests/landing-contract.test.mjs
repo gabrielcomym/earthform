@@ -97,6 +97,21 @@ test('browser metadata points to the approved local Earthform favicon assets', a
   assert.match(layout, /type: 'image\/png'/)
 })
 
+test('GitHub Pages release is configured as a static Next.js export', async () => {
+  const [config, workflow] = await Promise.all([
+    source('next.config.mjs'),
+    source('.github/workflows/deploy-pages.yml'),
+  ])
+
+  assert.match(config, /output: 'export'/)
+  assert.match(config, /trailingSlash: true/)
+  assert.match(config, /unoptimized: true/)
+  assert.match(config, /basePath/)
+  assert.match(workflow, /branches: \[main\]/)
+  assert.match(workflow, /path: \.\/out/)
+  assert.match(workflow, /actions\/deploy-pages@v4/)
+})
+
 test('navigation links use eased same-page anchor scrolling with accessible fallbacks', async () => {
   const [navLink, design] = await Promise.all([
     source('design-system/components/NavLink.tsx'),
