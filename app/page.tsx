@@ -19,7 +19,7 @@ import type { Language } from '@/design-system'
 import styles from './page.module.css'
 
 export default function EarthformLandingPage() {
-  const [language, setLanguage] = useState<Language>('pt')
+  const [language, setLanguage] = useState<Language>('en')
   const content = landingContent[language]
 
   useEffect(() => {

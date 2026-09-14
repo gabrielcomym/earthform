@@ -10,7 +10,7 @@ Earthform uses a dark, grounded language for a geospatial and environmental desi
 - Earthform Orange `#FF9000` is the only chromatic action/focus signal.
 - Inter Regular carries headlines and reading; Medium is reserved for emphasis and actions.
 - Selected satellite imagery establishes identity without decorative map chrome.
-- Desktop uses a deliberate 160px chapter rhythm.
+- Desktop uses a deliberate 240px chapter rhythm so horizontal modules have visible breathing room.
 - No gradients, shadows, glow, or decorative borders; structural dividers are reserved for documented component anatomy.
 - Square full-bleed media, 8px portraits, 12px contained surfaces, and pill controls.
 
@@ -71,9 +71,11 @@ Use only Regular and Medium. Letter spacing is `0`; optical sizing and synthesis
 | `--spacing-48` | `48px` | Desktop gutters, section/grid gap, Leadership and Footer padding |
 | `--spacing-80` | `80px` | CTA text-to-action, Leadership gaps, mobile lower padding |
 | `--spacing-120` | `120px` | Desktop Leadership panel and CTA bottom padding |
+| `--spacing-128` | `128px` | Mobile section rhythm |
 | `--spacing-160` | `160px` | Desktop section rhythm |
+| `--spacing-240` | `240px` | Desktop section rhythm between horizontal modules |
 
-Local values not promoted to tokens: Button padding `14px 28px`, desktop top offset `40px`, mobile rhythm `104px`, and tablet rhythm `128px`.
+Local values not promoted to tokens: Button padding `14px 28px` and desktop top offset `40px`.
 
 ## Radii
 
@@ -129,14 +131,14 @@ Depth comes from `#131313` browser/page surface, `#000000` contained chapters, a
 
 ### Desktop: 1024px+
 
-1400px page max, 40px top offset, 160px rhythm, 48px gutter, 80px display type, 291px Hero minimum, two-column Services, two-column Team, 1304px nested Leadership panel, 972px editorial measure, 986px CTA measure, desktop navigation visible.
+1400px page max, 40px top offset, 240px rhythm, 48px gutter, 80px display type, 291px Hero minimum, two-column Services, two-column Team, 1304px nested Leadership panel, 972px editorial measure, 986px CTA measure, desktop navigation visible.
 
 ### Tablet: 768px to 1023px
 
-32px gutters/top offset, 128px rhythm, 56px display type, 250px Hero minimum, two-column Services and Team, 32px grid-media gutters, 720px CTA cap.
+32px gutters/top offset, 160px rhythm, 56px display type, 250px Hero minimum, two-column Services and Team, 32px grid-media gutters, 720px CTA cap.
 
 ### Mobile: 320px to 767px
 
-24px gutters/top offset, 104px rhythm, 44px display type, 220px Hero minimum, 21px editorial/card copy, 24px section titles, one-column Services/Team, Service Cards at 172px minimum with 24px padding, nested Leadership at `0 24px` outside and `32px 24px 80px` inside, 340px CTA minimum, full-bleed stacked Footer, mobile disclosure visible.
+24px gutters/top offset, 128px rhythm, 44px display type, 220px Hero minimum, 21px editorial/card copy, 24px section titles, one-column Services/Team, Service Cards at 172px minimum with 24px padding, nested Leadership at `0 24px` outside and `32px 24px 80px` inside, 340px CTA minimum, full-bleed stacked Footer, mobile disclosure visible.
 
-All widths preserve source order, stable media ratios, readable measures, and zero horizontal overflow. The desktop rhythm adds a measured 16px breathing increment to the 160px baseline; the 128/104px responsive rhythms preserve proportional breathing room.
+All widths preserve source order, stable media ratios, readable measures, and zero horizontal overflow. The 240/160/128px rhythms create visible separation between horizontal modules while preserving the same content structure at every breakpoint.
